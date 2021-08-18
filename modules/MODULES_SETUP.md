@@ -87,9 +87,10 @@ compiler/2021.1.1       dnnl-cpu-gomp/latest    init_opencl/2021.1.1    intel_ip
 ----------------------------------------------------- /usr/share/modules/modulefiles -----------------------------------------------------
 dot  module-git  module-info  modules  null  use.own  
 ```
-We now can load an unload any of the component parts of oneAPI and see as 
+We now can load an unload any of the component parts of oneAPI and see their path correctly 
 
 ```bash
+    >module load compiler/latest
     >which which icc
     /opt/intel/oneapi/compiler/2021.1.1/linux/bin/intel64/icc
 ```
@@ -97,6 +98,7 @@ We now can load an unload any of the component parts of oneAPI and see as
 or see the enviroment variable for the MKL
 
 ```bash
+    >module load mkl
     >echo $MKLROOT 
     /opt/intel/oneapi/mkl/2021.1.1
 ```
