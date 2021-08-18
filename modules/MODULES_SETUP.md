@@ -45,13 +45,13 @@ such as
 
 ## Items with prepared module files 
 
-In my experiance CASLAB users particularly those using the GEMS solver require use of either the intel compilers or its associate Math Kernal Library(MKL). Traditionally after installation of the OneAPI tool kit by calling
+In my experiance CASLAB users particularly those using the GEMS solver require use of either the Intel compilers or its associated Math Kernal Library(MKL). Traditionally after installation the environment of the OneAPI tool kit is set by calling
 
 ```bash
     source /opt/intel/oneapi/setvars.sh
 ```
 
-Looking at this file the details are staggering. Fortunatly Intel has done most of the heavy lifting for us. Now with no modules loaded if we try to call the intel C compiler:
+Looking at this file the details are staggering. Fortunatly Intel has done most of the heavy lifting for us. Now with no modules loaded if we try to call the Intel C compiler:
 
 ```bash
     >which icc
