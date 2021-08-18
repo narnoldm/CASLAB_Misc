@@ -43,13 +43,6 @@ such as
     export PATH='/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
 ```
 
-## Setting up a module
-
-
-
-
-
-
 ## Items with prepared module files 
 
 In my experiance CASLAB users particularly those using the GEMS solver require use of either the intel compilers or its associate Math Kernal Library(MKL). Traditionally after installation of the OneAPI tool kit by calling
@@ -58,6 +51,52 @@ In my experiance CASLAB users particularly those using the GEMS solver require u
     source /opt/intel/oneapi/setvars.sh
 ```
 
-Looking at this file the details are staggering. Fortunatly 
+Looking at this file the details are staggering. Fortunatly Intel has done most of the heavy lifting for us. Now with no modules loaded if we try to call the intel C compiler:
 
+```bash
+    >which icc
+    Command 'icc' not found
+```
+To setup the module files first 
+```bash
+    >cd /opt/intel/oneapi
+    >modulefiles-setup.sh
+```
+we can then add the new module file directory as 
+```bash
+    >module use /opt/intel/oneapi/modulefiles
+```
 
+Now when we call <code>module avail</code> we get 
+
+```bash
+    module avail
+----------------------------------------------------- /opt/intel/oneapi/modulefiles ------------------------------------------------------
+advisor/2021.1.1        compiler/latest         dnnl-cpu-iomp/2021.1.1  init_opencl/latest            itac/2021.1.1     tbb/latest      
+advisor/latest          compiler32/2021.1.1     dnnl-cpu-iomp/latest    inspector/2021.1.1            itac/latest       tbb32/2021.1.1  
+ccl/2021.1.1            compiler32/latest       dnnl-cpu-tbb/2021.1.1   inspector/latest              mkl/2021.1.1      tbb32/latest    
+ccl/latest              dal/2021.1.1            dnnl-cpu-tbb/latest     intel_ipp_ia32/2021.1.1       mkl/latest        vpl/2021.1.1    
+clck/2021.1.1           dal/latest              dnnl/2021.1.1           intel_ipp_ia32/latest         mkl32/2021.1.1    vpl/latest      
+clck/latest             debugger/10.0.0         dnnl/latest             intel_ipp_intel64/2021.1.1    mkl32/latest      vtune/2021.1.1  
+compiler-rt/2021.1.1    debugger/latest         dpct/2021.1.1           intel_ipp_intel64/latest      mpi/2021.1.1      vtune/latest    
+compiler-rt/latest      dev-utilities/2021.1.1  dpct/latest             intel_ippcp_ia32/2021.1.1     mpi/latest        
+compiler-rt32/2021.1.1  dev-utilities/latest    dpl/2021.1.1            intel_ippcp_ia32/latest       oclfpga/2021.1.1  
+compiler-rt32/latest    dnnl-cpu-gomp/2021.1.1  dpl/latest              intel_ippcp_intel64/2021.1.1  oclfpga/latest    
+compiler/2021.1.1       dnnl-cpu-gomp/latest    init_opencl/2021.1.1    intel_ippcp_intel64/latest    tbb/2021.1.1      
+
+----------------------------------------------------- /usr/share/modules/modulefiles -----------------------------------------------------
+dot  module-git  module-info  modules  null  use.own  
+```
+We now can load an unload any of the component parts of oneAPI and see as 
+
+```bash
+    >which which icc
+    /opt/intel/oneapi/compiler/2021.1.1/linux/bin/intel64/icc
+```
+
+or see the enviroment variable for the MKL
+
+```bash
+    >echo $MKLROOT 
+    /opt/intel/oneapi/mkl/2021.1.1
+```
