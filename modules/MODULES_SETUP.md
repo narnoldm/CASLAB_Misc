@@ -7,7 +7,7 @@ Modules is the same system that many clusters use. The open source website can b
 
 
 
-## Instalation
+## Installation
 More detailed installation instructions can be found on the website. However for most CASLAB users Ubuntu is the default operating system. For this we can just use <code> apt-get </code>
 
 ```bash
